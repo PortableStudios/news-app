@@ -1,22 +1,33 @@
 {
-  "name": "news-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@types/react": "17.0.14",
-    "eslint": "7.30.0",
-    "eslint-config-next": "11.0.1",
-    "typescript": "4.3.5"
-  }
+	"name": "news-app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alaminyusuf/news-app.git"
+	},
+	"keywords": [],
+	"author": "Al-amin Yusuf",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/alaminyusuf/news-app/issues"
+	},
+	"homepage": "https://github.com/alaminyusuf/news-app#readme",
+	"dependencies": {
+		"axios": "^0.24.0",
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"ejs": "^3.1.6",
+		"express": "^4.17.2",
+		"moment": "^2.29.1",
+		"request": "^2.88.2"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.15"
+	}
 }

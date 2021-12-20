@@ -1,0 +1,12 @@
+<%- include('partials/header'); -%> <% articles.forEach(function(article) { %>
+<ul>
+	<div class="card container">
+		<p>Title: <%= article.webTitle %></p>
+		<p>Date: <%= moment(article.webPublicationDate).format('DD/MM/YYYY') %></p>
+
+		<p>
+			URL: <a href="<%=article.webUrl %>" target="_blank">Read full Story</a>
+		</p>
+	</div>
+</ul>
+<% }); %>
