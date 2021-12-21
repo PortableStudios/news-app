@@ -1,6 +1,36 @@
 <%- include('partials/header'); -%>
 
-<form action="/articles" method="GET" class="search-bar">
+<form action="/" method="GET" class="search-bar">
 	<input type="text" placeholder="climate" name="query" class="search-field" />
 	<input type="submit" value="search" class="submit" />
 </form>
+
+<% articles.forEach(function(article) { %>
+<ul>
+	<div class="card container">
+		<!-- <div class="detail"> -->
+		<p>Title: <%= article.webTitle %></p>
+		<p class="end">
+			Date: <%= moment(article.webPublicationDate).format('DD/MM/YYYY') %>
+		</p>
+
+		<p>
+			URL: <a href="<%=article.webUrl %>" target="_blank">Read full Story</a>
+		</p>
+	</div>
+	<!-- <input type="checkbox" name="check" class="checked" />
+	</div> -->
+</ul>
+<% }); %>
+
+<div class="card"></div>
+
+<script>
+	const pin = document.querySelectorAll(".checked");
+
+	pin.forEach((elem) => {
+		elem.addEventListener("change", () => {
+			console.log(elem.parentElement);
+		});
+	});
+</script>

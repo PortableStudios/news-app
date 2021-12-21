@@ -15,6 +15,12 @@
 	color: brown;
 }
 
+h2 {
+	margin: 0.5em;
+	color: brown;
+	text-transform: uppercase;
+}
+
 .search-bar {
 	align-self: flex-end;
 	display: flex;
@@ -42,6 +48,11 @@
 
 ul {
 	justify-content: center;
+	/* display: flex; */
+}
+
+.detail {
+	flex-basis: 95%;
 }
 
 .card {
@@ -52,20 +63,21 @@ ul {
 	align-content: center;
 	padding: 0.8em;
 	border-radius: 5px;
+	/* display: flex; */
 }
 
+.checked {
+	justify-self: flex-end;
+}
 .card p {
-	font-size: 1.1rem;
-	line-height: 1.6;
+	/* font-size: 1.1rem; */
+	line-height: 1.3;
+	width: 100%;
 }
 
 .card a {
 	color: #333;
 	text-decoration: none;
-}
-
-.card .end {
-	justify-content: flex-end;
 }
 
 @media (max-width: 492px) {
