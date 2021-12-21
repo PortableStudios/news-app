@@ -8,7 +8,6 @@
 <% articles.forEach(function(article) { %>
 <ul>
 	<div class="card container">
-		<!-- <div class="detail"> -->
 		<p>Title: <%= article.webTitle %></p>
 		<p class="end">
 			Date: <%= moment(article.webPublicationDate).format('DD/MM/YYYY') %>
@@ -18,12 +17,10 @@
 			URL: <a href="<%=article.webUrl %>" target="_blank">Read full Story</a>
 		</p>
 	</div>
-	<!-- <input type="checkbox" name="check" class="checked" />
-	</div> -->
 </ul>
 <% }); %>
 
-<script>
+<!-- <script>
 	const pin = document.querySelectorAll(".checked");
 
 	pin.forEach((elem) => {
@@ -31,4 +28,4 @@
 			console.log(elem.parentElement);
 		});
 	});
-</script>
+</script> -->

@@ -21,7 +21,8 @@ app.get("/", async (req, res) => {
 	const query = req.query.query;
 	const URL = `https://content.guardianapis.com/search?q=${query}&api-key=${key}`;
 
-	const response = await axios.get(URL);
+	const formatedURL = URL.replace(" ", "%20");
+	const response = await axios.get(formatedURL);
 	const articles = response.data.response.results;
 	res.render("home", { articles });
 });
