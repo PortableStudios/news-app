@@ -16,7 +16,10 @@ function LoadData(value, results_element)
             //data
             "query="+value,
             function(data,status){
-                
+                if (status == "success")
+                {
+                    $(results_element).css("display","block");
+                }
             }
         )
     };

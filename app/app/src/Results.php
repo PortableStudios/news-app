@@ -1,5 +1,9 @@
 <?php 
 
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\View\ArrayData;
+use SilverStripe\ORM\GroupedList;
+
 /**
  * 
  * Handles the formatting of the results
@@ -35,8 +39,43 @@ class Results {
 
         $proxy_api_raw_data = $proxy_api->getData();
 
-        // return the results or null if there was an error
-        if ($proxy_api_raw_data!=null) return $proxy_api_raw_data->response->results;
-        return null;
+        return $this->formatData($proxy_api_raw_data);
+    }
+
+    /**
+     * 
+     */
+    private function formatData($api_data = null)
+    {
+
+        $results = $api_data->response->results;
+        // save result in a format grouped by section and that the template ss will understand
+        $output = new ArrayList();
+        foreach($results as $result)
+        {
+            $output->push(new ArrayData(array(
+                'SectionName' => $result->sectionName,
+                'SectionID' => $result->sectionId,
+                'ArticleData' => $this->formatArticleData($result)
+            ))); 
+        }
+        $grouped_output = new GroupedList($output);
+        $grouped_output = $grouped_output->GroupedBy("SectionName",'ArticleData');
+        return $grouped_output;
+    }
+
+    /**
+     * 
+     */
+    private function formatArticleData($result = null)
+    {
+        $output = new ArrayData(array(
+            'ID' => $result->id,
+            'PublicationDate' => $result->webPublicationDate,
+            'WebsiteTitle' => $result->webTitle,
+            'WebsiteURL' => $result->webUrl,
+            'SectionID' => $result->sectionId
+        )); 
+        return $output;
     }
 }

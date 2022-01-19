@@ -4,6 +4,7 @@ namespace {
 
     use SilverStripe\CMS\Controllers\ContentController;
     use SilverStripe\Control\HTTPRequest;
+    use SilverStripe\View\ViewableData;
 
     class PageController extends ContentController
     {
@@ -39,9 +40,15 @@ namespace {
             $query = $request->getVars()["query"];
             if (!isset($query)) return null;
 
-            // get the formatted results ready to display on front end
+            // get the formatted results
             $results_api = new Results($query);
-            $data_api = $results_api->getData();
+            $results_data = $results_api->getData();
+
+            // create a viewable object and pass the results to be ready to show on front end
+            $viewable_data = new ViewableData();
+            return $viewable_data->customise([
+                "Results" => $results_data
+            ])->renderWith('Results');
         }
     }
 }
