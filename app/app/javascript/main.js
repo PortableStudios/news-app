@@ -14,9 +14,9 @@ function LoadData(value, results_element)
             //url
             "home/autocomplete",
             //data
-            "text="+value,
+            "query="+value,
             function(data,status){
-                console.log(status);
+                
             }
         )
     };

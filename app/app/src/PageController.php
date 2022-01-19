@@ -4,7 +4,7 @@ namespace {
 
     use SilverStripe\CMS\Controllers\ContentController;
     use SilverStripe\Control\HTTPRequest;
-    
+
     class PageController extends ContentController
     {
         /**
@@ -35,8 +35,13 @@ namespace {
 
         public function autocomplete(HTTPRequest $request)
         {
-            $query = $request->getVars()["text"];
-            var_dump($query);
+            // get query from the request 
+            $query = $request->getVars()["query"];
+            if (!isset($query)) return null;
+
+            // get the formatted results ready to display on front end
+            $results_api = new Results($query);
+            $data_api = $results_api->getData();
         }
     }
 }
