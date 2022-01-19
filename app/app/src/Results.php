@@ -78,4 +78,10 @@ class Results {
         )); 
         return $output;
     }
+
+    private function formatDate($raw_date)
+    {
+        // Convert raw date to D/M/Y format
+        return $raw_date;
+    }
 }

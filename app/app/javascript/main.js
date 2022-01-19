@@ -24,3 +24,12 @@ function LoadData(value, results_element)
         )
     };
 }
+
+// clone articles and push them to the bottom of the page (pinned articles)
+function SaveArticle($article_id)
+{
+    var cloned_article = $("#"+$article_id).clone();
+    $("#pinned_articles").show();
+    cloned_article.appendTo($("#pinned_articles"));
+
+}

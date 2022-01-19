@@ -32,6 +32,8 @@
                 <div class="results" style="display: none;">
             </div>
         </form>
+        <h2>Pinned Articles</h2>
+        <div id="pinned_articles" style="display:none;"></div>
     </div>
 </div>
 <% include Footer %>
