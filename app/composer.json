@@ -15,6 +15,9 @@
     },
     "extra": {
         "resources-dir": "_resources",
+        "expose": [
+            "app/javascript"
+        ],
         "project-files-installed": [
             "app/.htaccess",
             "app/_config.php",
