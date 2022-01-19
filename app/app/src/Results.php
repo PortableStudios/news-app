@@ -15,7 +15,7 @@ class Results {
     private $keyword;
 
     // add more sites later?
-    const SITES = "guardian";
+    const SITES = ["guardian","guardian"];
 
     /**
      * @param $keyword: searched keyword
@@ -30,16 +30,29 @@ class Results {
     public function getData()
     {
         // get raw data using proxyAPI
-        $proxy_api= new ProxyAPI(
-            $this->keyword, 
-            self::SITES, 
-            "https://content.guardianapis.com/", 
-            "search",
-            "test");
-
-        $proxy_api_raw_data = $proxy_api->getData();
-
-        return $this->formatData($proxy_api_raw_data);
+        //$proxy_api = new ProxyAPI(null, null, null, null, null);
+        $proxy_data_array = [];
+        $output = new ArrayList();
+        foreach(self::SITES as $site)
+        {
+            $proxy_api = new ProxyAPI(
+                $this->keyword, 
+                $site, 
+                "https://content.guardianapis.com/", 
+                "search",
+                "test");
+            $proxy_api_raw_data = $proxy_api->getData();
+            $formatted_data = $this->formatData($proxy_api_raw_data);
+            $output->push(new ArrayData(array(
+                "Data" => $formatted_data,
+                'SectionName' => $formatted_data["SectionName"]
+            ))); 
+            
+            //$proxy_data_array = array_merge($proxy_data_array, $proxy_api_raw_data);
+        }
+        $grouped_output = new GroupedList($output);
+        $grouped_output = $grouped_output->GroupedBy("SectionName",'Data');
+        return $grouped_output;
     }
 
     /**
