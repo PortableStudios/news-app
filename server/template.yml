@@ -1,0 +1,134 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  News App API
+
+  POC for the new News App, this API caches articles from various sources, and allows the integrator/consumer to search by titles
+
+Globals:
+  Function:
+    Timeout: 60
+    Handler: app.lambda_handler
+    Runtime: python3.8
+    Layers:
+      - !Ref SharedLayer
+    Environment:
+      Variables:
+        REGION: !Ref Region
+        API_ENDPOINT: !Ref GuardianApiEndpoint
+        API_TOKEN: !Ref GuardianApiToken
+
+Parameters:
+  GuardianApiToken:
+    Description: 'Required. Guardian App API Key'
+    Type: String
+    Default: 'cf054978-c6dd-470f-8bdd-adc232121c99'
+  GuardianApiEndpoint:
+    Description: 'Required. The Guardian App API end point.'
+    Type: String
+    Default: 'https://content.guardianapis.com/search'
+  Region:
+    Description: 'Required. The region we all want to be in.'
+    Type: String
+    Default: 'ap-southeast-2'
+  Environment:
+    Type: String
+    Description: The Environment the developer is working in
+    Default: dev
+    AllowedValues:
+      - dev
+      - stage
+      - prod
+  FeatureBranch:
+    Type: String
+    Description: Provide the name of the feature branch if this in not a build from the master code branch.
+    Default: master
+  ServiceName:
+    Type: String
+    Description: The name of the service
+    Default: news-app
+
+Resources:
+
+  SharedLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: src/library/
+      CompatibleRuntimes:
+        - python3.8
+    Metadata:
+      BuildMethod: python3.8
+
+  ###
+  # Setup of the Cache Table
+  ###
+  cacheArticles:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "title"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "title"
+          KeyType: "HASH"
+      BillingMode: PAY_PER_REQUEST
+      TableName: "articleCache"
+
+  # Defining auth service
+  ServiceApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: ServiceApi
+      StageName: !Ref Environment
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+
+  ###
+  # Search Function
+  ###
+  searchFunction:
+    Type: AWS::Serverless::Function
+    DependsOn: cacheArticles
+    Properties:
+      CodeUri: src/search/
+      Environment:
+        Variables:
+          CACHE_TABLE: !Ref cacheArticles
+      Events:
+        search:
+          Type: Api
+          Properties:
+            Path: /search/{query}
+            RestApiId: !Ref ServiceApi
+            Method: GET
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref cacheArticles
+
+  # The funciton for caching all reels: authorized
+  feedFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/feeder/
+      Environment:
+        Variables:
+          CACHE_TABLE: !Ref cacheArticles
+      Events:
+        feed:
+          Type: Api
+          Properties:
+            Path: /feed
+            RestApiId: !Ref ServiceApi
+            Method: GET
+
+Outputs:
+  CacheAPI:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ServiceApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/"
+  TestFunction:
+    Description: "Search API URL"
+    Value: !GetAtt searchFunction.Arn

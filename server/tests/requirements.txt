@@ -1,0 +1,6 @@
+pytest
+pytest-mock
+boto3
+moto
+coverage
+pylint
