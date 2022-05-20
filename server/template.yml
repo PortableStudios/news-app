@@ -124,7 +124,9 @@ Resources:
             Path: /feed
             RestApiId: !Ref ServiceApi
             Method: GET
-
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref cacheArticles
 Outputs:
   CacheAPI:
     Description: "API Gateway endpoint URL"

@@ -43,7 +43,7 @@ def store(data):
     ##
     table_name = os.environ.get('CACHE_TABLE', 'articleCache')
     params = {
-        'id'                : { 'S' : hash(data['id']) },
+        'id'                : { 'S' : str(abs(hash(data['id']))) },
         'title'             : { 'S' : data['webTitle'] },
         'publisher'         : { 'S' : "guardian" },
         'publication_date'  : { 'S' : str( data['webPublicationDate'] ) },
