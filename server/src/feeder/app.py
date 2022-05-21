@@ -47,6 +47,7 @@ def store(data):
         'title'             : { 'S' : data['webTitle'] },
         'publisher'         : { 'S' : "guardian" },
         'publication_date'  : { 'S' : str( data['webPublicationDate'] ) },
+        # @todo format to be consistent with publication date
         'import_date'       : { 'S' : str( datetime.datetime.now(timezone.utc) ) },
         'url'               : { 'S' : str( data['webUrl'] ) },
     }

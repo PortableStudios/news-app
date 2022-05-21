@@ -80,7 +80,7 @@ Resources:
   ServiceApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: ServiceApi
+      Name: NewAppApi
       StageName: !Ref Environment
       Cors:
         AllowMethods: "'*'"
@@ -102,7 +102,7 @@ Resources:
         search:
           Type: Api
           Properties:
-            Path: /search/{query}
+            Path: /search/
             RestApiId: !Ref ServiceApi
             Method: GET
       Policies:

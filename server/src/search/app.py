@@ -1,31 +1,34 @@
-import json
 import os
 import boto3
+import json
 from common import response
+from boto3.dynamodb.conditions import Attr
 
-dynamodb = boto3.client('dynamodb')
-lam = boto3.client('lambda')
+dynamodb = boto3.resource('dynamodb')
 
 def lambda_handler(event, context):
     # Main handler for the lambda function,
     # checks params, invokes search, and returns response
-    if ('pathParameters' not in event 
+    if ('queryStringParameters' not in event
+            or 'httpMethod' not in event
+            or 'query' not in event['queryStringParameters']
             or event['httpMethod'] != 'GET'):
-        return response(code=400, body=json.dumps({'msg': 'Bad Request'}))
+        return response(code=400)
 
-    # TODO: need to ensure event query parameter is available and valid 
-    query = event['pathParameters']['query']
-    items = search(query).get('Item')
-    print (items)
+    query = event['queryStringParameters']['query']
+    items = search(query)
+    return response(body=json.dumps(items))
 
-    return response(items)
-        
 
 def search(query):
-    # Lets find some articles
     table_name = os.environ.get('CACHE_TABLE', 'articleCache')
-
     table = dynamodb.Table(table_name)
-    return table.query(
-            FilterExpression=Attr('title').contains(query)
-        )
+
+    # Lets find some articles
+    # @todo this isnt great, scan will get slower over time due to size of the table
+    # @todo review the use of elastic search
+    response = table.scan(
+        FilterExpression=Attr('title').contains(str(query))
+    )
+
+    return response.get('Items')
