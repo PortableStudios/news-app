@@ -50,6 +50,9 @@ Parameters:
 
 Resources:
 
+  ###
+  # Shared library
+  ###
   SharedLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
@@ -76,7 +79,9 @@ Resources:
       BillingMode: PAY_PER_REQUEST
       TableName: "articleCache"
 
-  # Defining auth service
+  ###
+  # Defining API Gateway details
+  ###
   ServiceApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -108,8 +113,9 @@ Resources:
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref cacheArticles
-
-  # The funciton for caching all reels: authorized
+  ###
+  # Feed Function
+  ###
   feedFunction:
     Type: AWS::Serverless::Function
     Properties:
