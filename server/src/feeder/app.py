@@ -43,9 +43,10 @@ def store(data):
     ##
     table_name = os.environ.get('CACHE_TABLE', 'articleCache')
     params = {
-        'id'                : { 'S' : str(abs(hash(data['id']))) },
+        'hash'              : { 'S' : str(abs(hash(data['id']))) },
         'title'             : { 'S' : data['webTitle'] },
         'publisher'         : { 'S' : "guardian" },
+        'section'           : { 'S' : data["sectionId"] },
         'publication_date'  : { 'S' : str( data['webPublicationDate'] ) },
         # @todo format to be consistent with publication date
         'import_date'       : { 'S' : str( datetime.datetime.now(timezone.utc) ) },
