@@ -17,7 +17,8 @@ def lambda_handler(event, context):
 
     query = event['queryStringParameters']['query']
     items = search(query)
-    return response(body=json.dumps(items))
+    sort_items = sorted(items, key=lambda x: x['section'])
+    return response(body=json.dumps(sort_items))
 
 
 def search(query):
