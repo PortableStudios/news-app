@@ -26,8 +26,8 @@ def search(query):
     table = dynamodb.Table(table_name)
 
     # Lets find some articles
-    # @todo this isnt great, scan will get slower over time due to size of the table
-    # @todo review the use of elastic search
+    # @todo this isn't great, scan will get slower over time due to size of the table
+    # @todo review the use of elastic search thru dynamodb streams
     response = table.scan(
         FilterExpression=Attr('title').contains(str(query))
     )

@@ -5,8 +5,6 @@ import './autosuggest.css';
 class ArticleAutoSuggest extends React.Component {
     constructor() {
         super();
-
-        //Define state for value and suggestion collection
         this.state = {
             value: '',
             suggestions: []
@@ -18,7 +16,7 @@ class ArticleAutoSuggest extends React.Component {
         event.nativeEvent.stopImmediatePropagation();
 
         let pinned = localStorage.getItem("myPinned");
-        let hash = event.target.getAttribute('hash');
+        let hash = event.target.getAttribute('data-hash');
         pinned = pinned ? pinned.split(',') : [];
         if (!pinned.includes(hash)) {
             pinned.push(hash);
@@ -34,7 +32,7 @@ class ArticleAutoSuggest extends React.Component {
     renderSuggestion = suggestion => (
         <div>
             <a href={suggestion.url}>{suggestion.title} ({suggestion.publication_date})</a>
-            <button onClick={this.handleClick} hash={suggestion.hash}>save</button>
+            <button onClick={this.handleClick} data-hash={suggestion.hash}>save</button>
         </div>
     );
 

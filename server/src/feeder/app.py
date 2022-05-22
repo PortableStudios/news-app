@@ -15,7 +15,7 @@ logger.setLevel(logging.INFO)
 def lambda_handler(event, context):
     ##
     # This is the main entry to feed the cache, since we want to have multiple feeds from
-    # various places this should call kick off all the feeds (Guardian, etc) via SNS topic, that
+    # various places this should call kick off all the feeds (Guardian, etc) to an SNS topic, that
     # all feeders are subscribed to.
     # But, due to time limitation, this feed for now directly calls GuardianAPI
     ##
