@@ -13,13 +13,28 @@ class ArticleAutoSuggest extends React.Component {
         };
     }
 
+    handleClick = (event) => {
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
+
+        let pinned = localStorage.getItem("myPinned");
+        let hash = event.target.getAttribute('hash');
+        pinned = pinned ? pinned.split(',') : [];
+        if (!pinned.includes(hash)) {
+            pinned.push(hash);
+        }
+        localStorage.setItem('myPinned', pinned.toString())
+        console.log ("Pinned:" + localStorage.getItem("myPinned"));
+    }
+
     // Trigger suggestions
     getSuggestionValue = suggestion => suggestion.name;
 
     // Render Each Option
     renderSuggestion = suggestion => (
         <div>
-            <a href={suggestion.url}>{suggestion.title}</a>
+            <a href={suggestion.url}>{suggestion.title} ({suggestion.publication_date})</a>
+            <button onClick={this.handleClick} hash={suggestion.hash}>save</button>
         </div>
     );
 
