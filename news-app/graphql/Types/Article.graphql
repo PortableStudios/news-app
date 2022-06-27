@@ -17,7 +17,12 @@ extend type Query {
     query: String
   ) : [Article] @field(resolver: "SearchArticleResolver@__invoke")
 
-  readArticles: [Article!]! @all
+  readArticles: [Article!]! @all 
+}
+
+input OrderByClause{
+    isPinned: Boolean!
+    order: DESC!
 }
 
 extend type Mutation {

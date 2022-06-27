@@ -67,8 +67,6 @@ export class NewsStore {
     // }
 
     @action async fetchArticles(query, limit = 0, offset = 0) {
-        this.loading = true;
-
         const result = await this.httpStore.apolloClient
             .query({
                 query: ReadArticles,
@@ -79,7 +77,6 @@ export class NewsStore {
             }).catch(result => {
                 const errors = result.graphQLErrors ? result.graphQLErrors.map(error => error.message) : result;
                 this.errorMessage = errors.join(', ');
-                this.loading = false;
             });
 
         if (result) {
@@ -87,18 +84,12 @@ export class NewsStore {
             const articleResults = result.data.readArticles;
 
             this.articles = [...articleResults];
-
-            this.loading = false;
         } else {
             this.errorMessage = result.data.Message;
         }
-
-        this.loading = false;
     };
 
     @action async searchArticles(query, limit = 0, offset = 0) {
-        this.loading = true;
-
         const result = await this.httpStore.apolloClient
             .query({
                 query: SearchArticles,
@@ -109,7 +100,6 @@ export class NewsStore {
             }).catch(result => {
                 const errors = result.graphQLErrors ? result.graphQLErrors.map(error => error.message) : result;
                 this.errorMessage = errors.join(', ');
-                this.loading = false;
             });
 
         if (result) {
@@ -117,8 +107,6 @@ export class NewsStore {
             const articleResults = result.data.searchArticles;
 
             this.articles = [...articleResults];
-
-            this.loading = false;
         } else {
             this.errorMessage = result.data.Message;
         }
@@ -127,8 +115,6 @@ export class NewsStore {
     };
 
     @action async pinArticle(articleID, isPinned) {
-        this.loading = true;
-
         const result = await this.httpStore.apolloClient
             .mutate({
                 mutation: PinArticle,
@@ -139,9 +125,6 @@ export class NewsStore {
             }).catch(result => {
                 const errors = result.graphQLErrors ? result.graphQLErrors.map(error => error.message) : result;
                 this.errorMessage = errors.join(', ');
-                this.loading = false;
             });
-
-        this.loading = false;
     };
 }

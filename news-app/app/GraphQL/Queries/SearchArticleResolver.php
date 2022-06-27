@@ -17,6 +17,8 @@ final class SearchArticleResolver
         )->orWhere('sectionID', 'LIKE', '%'.$args['query'].'%')
             ->orWhere('sectionTitle', 'LIKE', '%'.$args['query'].'%')
             ->orWhere('webURL', 'LIKE', '%'.$args['query'].'%')
+            ->orWhere('isPinned', true)
+            ->orderBy('isPinned', 'ASC')
             ->get();
     }
 }
