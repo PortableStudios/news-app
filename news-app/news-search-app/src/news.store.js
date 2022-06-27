@@ -10,6 +10,7 @@ const ReadArticles = gql`
             sectionTitle
             webURL
             publicationDate
+            isPinned
         }
     }`,
     SearchArticles = gql`
@@ -25,9 +26,23 @@ const ReadArticles = gql`
                 sectionTitle
                 webURL
                 publicationDate
+                isPinned
             }
         }
-    `;
+    `,
+    PinArticle = gql`
+        mutation PinArticle(
+            $id: ID
+            $isPinned: Boolean
+        ) {
+            pinArticle(
+                id: $id,
+                isPinned: $isPinned
+            ) {
+                id
+            }
+        }
+`;
 
 export class NewsStore {
     static instance;
@@ -107,6 +122,25 @@ export class NewsStore {
         } else {
             this.errorMessage = result.data.Message;
         }
+
+        this.loading = false;
+    };
+
+    @action async pinArticle(articleID, isPinned) {
+        this.loading = true;
+
+        const result = await this.httpStore.apolloClient
+            .mutate({
+                mutation: PinArticle,
+                variables: {
+                    id: articleID ? articleID : null,
+                    isPinned: isPinned ? isPinned : null
+                },
+            }).catch(result => {
+                const errors = result.graphQLErrors ? result.graphQLErrors.map(error => error.message) : result;
+                this.errorMessage = errors.join(', ');
+                this.loading = false;
+            });
 
         this.loading = false;
     };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import './article.scss';
 import '../app.scss';
@@ -15,7 +15,13 @@ const App = inject('newsStore')(observer((props) => {
         },
         ArticleView = (props) => {
             const { article } = props,
-                { title, sectionTitle, webURL, publicationDate } = article;
+                [isPinned, setIsPinned] = useState(article.isPinned),
+                { title, sectionTitle, webURL, publicationDate } = article,
+                handlePinArticle = () => {
+                    const pinnedStatus = !isPinned;
+                    setIsPinned(pinnedStatus);
+                    newsStore.pinArticle(article.id, pinnedStatus);
+                }
 
             return (
                 <div className='article__wrapper'>
@@ -40,6 +46,13 @@ const App = inject('newsStore')(observer((props) => {
                                 Read Article
                             </a>
                         }
+                        <button onClick={ (e) => { handlePinArticle(e.target.value); } } className='article__pin-button'>
+                            { isPinned ? (
+                                'Unpin Article'
+                            ) : (
+                                'Pin Article'
+                            )}
+                        </button>
                     </div>
                 </div>
             )

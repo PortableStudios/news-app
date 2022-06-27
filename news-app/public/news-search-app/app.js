@@ -51842,13 +51842,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./news-search-app/node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mobx-react */ "./news-search-app/node_modules/mobx-react/dist/mobxreact.esm.js");
-/* harmony import */ var _article_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./article.scss */ "./news-search-app/src/ArticleDashboard/article.scss");
-/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app.scss */ "./news-search-app/src/app.scss");
-/* harmony import */ var _search_bar_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search-bar.scss */ "./news-search-app/src/ArticleDashboard/search-bar.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./news-search-app/node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./news-search-app/node_modules/@babel/runtime/helpers/esm/slicedToArray.js */ "./news-search-app/node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./news-search-app/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mobx-react */ "./news-search-app/node_modules/mobx-react/dist/mobxreact.esm.js");
+/* harmony import */ var _article_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./article.scss */ "./news-search-app/src/ArticleDashboard/article.scss");
+/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app.scss */ "./news-search-app/src/app.scss");
+/* harmony import */ var _search_bar_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search-bar.scss */ "./news-search-app/src/ArticleDashboard/search-bar.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./news-search-app/node_modules/react/jsx-runtime.js");
+
+
 var _jsxFileName = "/Users/garryyeatman/Sites/portable/news-app/news-search-app/src/ArticleDashboard/ArticlesDashboard.js",
     _this = undefined;
 
@@ -51860,7 +51863,7 @@ var _jsxFileName = "/Users/garryyeatman/Sites/portable/news-app/news-search-app/
 
 
 
-var App = (0,mobx_react__WEBPACK_IMPORTED_MODULE_5__.inject)('newsStore')((0,mobx_react__WEBPACK_IMPORTED_MODULE_5__.observer)(function (props) {
+var App = (0,mobx_react__WEBPACK_IMPORTED_MODULE_6__.inject)('newsStore')((0,mobx_react__WEBPACK_IMPORTED_MODULE_6__.observer)(function (props) {
   var newsStore = props.newsStore,
       articles = newsStore.articles,
       formattedDate = function formattedDate(day) {
@@ -51870,46 +51873,62 @@ var App = (0,mobx_react__WEBPACK_IMPORTED_MODULE_5__.inject)('newsStore')((0,mob
   },
       ArticleView = function ArticleView(props) {
     var article = props.article,
+        _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(article.isPinned),
+        _useState2 = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
+        isPinned = _useState2[0],
+        setIsPinned = _useState2[1],
         title = article.title,
         sectionTitle = article.sectionTitle,
         webURL = article.webURL,
-        publicationDate = article.publicationDate;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        publicationDate = article.publicationDate,
+        handlePinArticle = function handlePinArticle() {
+      var pinnedStatus = !isPinned;
+      setIsPinned(pinnedStatus);
+      newsStore.pinArticle(article.id, pinnedStatus);
+    };
+
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "article__wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "article",
-        children: [sectionTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: [sectionTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "article__section-tag",
           children: sectionTitle
-        }), title && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        }), title && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
           className: "article",
           children: title
-        }), publicationDate && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        }), publicationDate && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "article__date",
           children: formattedDate(publicationDate)
-        }), webURL && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+        }), webURL && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
           className: "article__link",
           href: webURL,
           target: "_blank",
           children: "Read Article"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          onClick: function onClick(e) {
+            handlePinArticle(e.target.value);
+          },
+          className: "article__pin-button",
+          children: isPinned ? 'Unpin Article' : 'Pin Article'
         })]
       })
     });
   },
       ArticlesView = function ArticlesView() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "articles-dashboard",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
         children: "Articles"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
         children: ["Found ", articles.length, " articles"]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
         children: articles && articles.length > 0 ? articles.map(function (article, i) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ArticleView, {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArticleView, {
             article: article
           }, i);
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
             children: "No Articles Found"
           })
         })
@@ -51920,18 +51939,18 @@ var App = (0,mobx_react__WEBPACK_IMPORTED_MODULE_5__.inject)('newsStore')((0,mob
     newsStore.searchArticles(value);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "App container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("header", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("header", {
       className: "App-header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
         children: "Search News Articles"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "search-bar",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
           className: "search-bar__label",
           children: "Search for a news article"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
           className: "search-bar__input",
           type: "search",
           name: "news-article",
@@ -51940,7 +51959,7 @@ var App = (0,mobx_react__WEBPACK_IMPORTED_MODULE_5__.inject)('newsStore')((0,mob
             handleSearchInput(e.target.value);
           }
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ArticlesView, {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArticlesView, {})]
     })
   });
 }));
@@ -52143,12 +52162,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _templateObject, _templateObject2, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class2;
+var _templateObject, _templateObject2, _templateObject3, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class2;
 
 
 
-var ReadArticles = (0,graphql_tag__WEBPACK_IMPORTED_MODULE_9__["default"])(_templateObject || (_templateObject = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral_js__WEBPACK_IMPORTED_MODULE_8__["default"])(["\n    query ReadArticles {\n        readArticles {\n            id\n            title\n            sectionID\n            sectionTitle\n            webURL\n            publicationDate\n        }\n    }"]))),
-    SearchArticles = (0,graphql_tag__WEBPACK_IMPORTED_MODULE_9__["default"])(_templateObject2 || (_templateObject2 = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral_js__WEBPACK_IMPORTED_MODULE_8__["default"])(["\n        query SearcArticles(\n            $query: String\n        ) {\n            searchArticles(\n                query: $query\n            ) {\n                id\n                title\n                sectionID\n                sectionTitle\n                webURL\n                publicationDate\n            }\n        }\n    "])));
+var ReadArticles = (0,graphql_tag__WEBPACK_IMPORTED_MODULE_9__["default"])(_templateObject || (_templateObject = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral_js__WEBPACK_IMPORTED_MODULE_8__["default"])(["\n    query ReadArticles {\n        readArticles {\n            id\n            title\n            sectionID\n            sectionTitle\n            webURL\n            publicationDate\n            isPinned\n        }\n    }"]))),
+    SearchArticles = (0,graphql_tag__WEBPACK_IMPORTED_MODULE_9__["default"])(_templateObject2 || (_templateObject2 = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral_js__WEBPACK_IMPORTED_MODULE_8__["default"])(["\n        query SearcArticles(\n            $query: String\n        ) {\n            searchArticles(\n                query: $query\n            ) {\n                id\n                title\n                sectionID\n                sectionTitle\n                webURL\n                publicationDate\n                isPinned\n            }\n        }\n    "]))),
+    PinArticle = (0,graphql_tag__WEBPACK_IMPORTED_MODULE_9__["default"])(_templateObject3 || (_templateObject3 = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral_js__WEBPACK_IMPORTED_MODULE_8__["default"])(["\n        mutation PinArticle(\n            $id: ID\n            $isPinned: Boolean\n        ) {\n            pinArticle(\n                id: $id,\n                isPinned: $isPinned\n            ) {\n                id\n            }\n        }\n"])));
 var NewsStore = (_class = (_class2 = /*#__PURE__*/function () {
   function NewsStore(httpStore) {
     (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_classCallCheck_js__WEBPACK_IMPORTED_MODULE_4__["default"])(this, NewsStore);
@@ -52292,6 +52312,51 @@ var NewsStore = (_class = (_class2 = /*#__PURE__*/function () {
 
       return searchArticles;
     }()
+  }, {
+    key: "pinArticle",
+    value: function () {
+      var _pinArticle = (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__["default"])().mark(function _callee3(articleID, isPinned) {
+        var _this3 = this;
+
+        var result;
+        return (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__["default"])().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.loading = true;
+                _context3.next = 3;
+                return this.httpStore.apolloClient.mutate({
+                  mutation: PinArticle,
+                  variables: {
+                    id: articleID ? articleID : null,
+                    isPinned: isPinned ? isPinned : null
+                  }
+                })["catch"](function (result) {
+                  var errors = result.graphQLErrors ? result.graphQLErrors.map(function (error) {
+                    return error.message;
+                  }) : result;
+                  _this3.errorMessage = errors.join(', ');
+                  _this3.loading = false;
+                });
+
+              case 3:
+                result = _context3.sent;
+                this.loading = false;
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function pinArticle(_x3, _x4) {
+        return _pinArticle.apply(this, arguments);
+      }
+
+      return pinArticle;
+    }()
   }], [{
     key: "getInstance",
     value: function getInstance(httpStore) {
@@ -52328,7 +52393,7 @@ var NewsStore = (_class = (_class2 = /*#__PURE__*/function () {
   initializer: function initializer() {
     return [];
   }
-}), (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_applyDecoratedDescriptor_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_class.prototype, "fetchArticles", [mobx__WEBPACK_IMPORTED_MODULE_10__.action], Object.getOwnPropertyDescriptor(_class.prototype, "fetchArticles"), _class.prototype), (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_applyDecoratedDescriptor_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_class.prototype, "searchArticles", [mobx__WEBPACK_IMPORTED_MODULE_10__.action], Object.getOwnPropertyDescriptor(_class.prototype, "searchArticles"), _class.prototype)), _class);
+}), (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_applyDecoratedDescriptor_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_class.prototype, "fetchArticles", [mobx__WEBPACK_IMPORTED_MODULE_10__.action], Object.getOwnPropertyDescriptor(_class.prototype, "fetchArticles"), _class.prototype), (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_applyDecoratedDescriptor_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_class.prototype, "searchArticles", [mobx__WEBPACK_IMPORTED_MODULE_10__.action], Object.getOwnPropertyDescriptor(_class.prototype, "searchArticles"), _class.prototype), (0,_Users_garryyeatman_Sites_portable_news_app_news_search_app_node_modules_babel_runtime_helpers_esm_applyDecoratedDescriptor_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_class.prototype, "pinArticle", [mobx__WEBPACK_IMPORTED_MODULE_10__.action], Object.getOwnPropertyDescriptor(_class.prototype, "pinArticle"), _class.prototype)), _class);
 
 /***/ }),
 
@@ -52381,7 +52446,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".article__wrapper {\n  border: 1px solid #000000;\n  margin: 25px 0px;\n  padding: 25px;\n}\n.article__link {\n  color: blue;\n}\n.article__link:hover, .article__link:focus {\n  color: purple;\n  text-decoration: underline;\n}\n.article__date {\n  display: block;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".article__wrapper {\n  border: 1px solid #000000;\n  margin: 25px 0px;\n  padding: 25px;\n}\n.article__link {\n  color: blue;\n}\n.article__link:hover, .article__link:focus {\n  color: purple;\n  text-decoration: underline;\n}\n.article__date {\n  display: block;\n}\n.article__pin-button {\n  display: block;\n  padding: 5px 25px;\n  background-color: #000000;\n  color: #FFFFFF;\n  margin: 15px 0px 0px 0px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -53140,6 +53205,23 @@ function _arrayLikeToArray(arr, len) {
 
 /***/ }),
 
+/***/ "./news-search-app/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js":
+/*!***********************************************************************************!*\
+  !*** ./news-search-app/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _arrayWithHoles)
+/* harmony export */ });
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
 /***/ "./news-search-app/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":
 /*!**************************************************************************************!*\
   !*** ./news-search-app/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js ***!
@@ -53340,6 +53422,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+
+/***/ }),
+
+/***/ "./news-search-app/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js":
+/*!*****************************************************************************************!*\
+  !*** ./news-search-app/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _iterableToArrayLimit)
+/* harmony export */ });
+function _iterableToArrayLimit(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+  if (_i == null) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+
+  var _s, _e;
+
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+/***/ }),
+
+/***/ "./news-search-app/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js":
+/*!************************************************************************************!*\
+  !*** ./news-search-app/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _nonIterableRest)
+/* harmony export */ });
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 /***/ }),
@@ -53766,6 +53908,31 @@ function _regeneratorRuntime() {
       }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
     }
   }, exports;
+}
+
+/***/ }),
+
+/***/ "./news-search-app/node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
+/*!**********************************************************************************!*\
+  !*** ./news-search-app/node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _slicedToArray)
+/* harmony export */ });
+/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles.js */ "./news-search-app/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js");
+/* harmony import */ var _iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit.js */ "./news-search-app/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js");
+/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./news-search-app/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
+/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nonIterableRest.js */ "./news-search-app/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js");
+
+
+
+
+function _slicedToArray(arr, i) {
+  return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr, i) || (0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
 }
 
 /***/ }),
