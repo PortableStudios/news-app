@@ -1,3 +1,15 @@
-.searh-bar {
+.search-bar {
+    display: block;
 
+    &__label {
+        font-size: 16px;
+        text-decoration: underline;
+        display: block;
+    }
+
+    &__input {
+        display: block;
+        font-size: 16px;
+        border: 1px solid #000000;
+    }
 }

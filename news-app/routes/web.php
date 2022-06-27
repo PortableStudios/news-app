@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\UpdateFromNewsSourceJob;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return 'lol';
+    $newsJob = new UpdateFromNewsSourceJob();
+    $newsJob->handle();
 });
