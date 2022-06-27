@@ -1,0 +1,21 @@
+type Article {
+  id: ID
+  title: String
+  sectionID: String
+  sectionTitle: String
+  webURL: String
+  publicationDate: String
+  isPinned: Boolean
+}
+
+extend type Query {
+  article(
+    id: ID @eq
+  ): Article @find
+
+  searchArticles(
+    query: String
+  ) : [Article] @field(resolver: "SearchArticleResolver@__invoke")
+
+  readArticles: [Article!]! @all
+}

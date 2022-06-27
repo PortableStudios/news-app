@@ -2,11 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { HTTPStore } from './http.store';
+import { NewsStore } from './news.store';
+import { Provider } from 'mobx-react';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')),
+  httpStore = HTTPStore.getInstance(),
+  newsStore = NewsStore.getInstance(httpStore),
+  rootStores = {
+    httpStore,
+    newsStore
+  };
+
+newsStore.fetchArticles();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider {...rootStores}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

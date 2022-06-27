@@ -1,18 +1,15 @@
 import React from 'react';
-import SearchBar from './SearchBar/search-bar';
+import ArticlesDashboard from './ArticleDashboard/ArticlesDashboard';
 import './app.scss';
 
 const App = () => {
-  return (
-    <div className="App container">
-      <header className="App-header">
-        <h1>
-          Search News Articles
-        </h1>
-        <SearchBar />
-      </header>
-    </div>
-  );
+    return (
+        <div className="App container">
+            <header className="App-header">
+                <ArticlesDashboard />
+            </header>
+        </div>
+    );
 }
 
 export default App;

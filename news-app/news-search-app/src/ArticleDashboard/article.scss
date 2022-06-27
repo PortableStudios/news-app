@@ -1,0 +1,21 @@
+.article {
+    &__wrapper {
+        border: 1px solid #000000;
+        margin: 25px 0px;
+        padding: 25px;
+    }
+
+    &__link {
+        color: blue;
+
+        &:hover,
+        &:focus {
+            color: purple;
+            text-decoration: underline;
+        }
+    }
+
+    &__date {
+        display: block;
+    }
+}

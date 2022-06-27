@@ -18,6 +18,7 @@ class Article extends Model
         'sectionID',
         'sectionTitle',
         'webURL',
-        'publicationDate'
+        'publicationDate',
+        'isPinned'
     ];
 }
