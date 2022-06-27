@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
+use App\Models\Article;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
@@ -14,7 +15,7 @@ class GuardianController extends NewsController
 {
     public static function updateFromSource() {
         $client = new Client();
-        $key = env('GUARDIAN_KEY', false);
+        $key = config('news.keys.GUARDIAN_KEY', false);
         $uri = new Uri('https://content.guardianapis.com/search');
 
         if (!$key) {
@@ -38,12 +39,28 @@ class GuardianController extends NewsController
             Log::info($response->getBody());
 
             if ($response && $response->getStatusCode() === 200) {
-                $result = $response->getBody()->getContents();
+                $result = $response->getBody();
+                $guardianResult = json_decode($result);
+                $articles = $guardianResult->response->results;
 
-                echo var_dump($response);
+                foreach ($articles as $article) {
+                    try {
+                        $newArticle = new Article(
+                            [
+                                'title' => $article->webTitle,
+                                'sectionID' => $article->sectionId,
+                                'sectionTitle' => $article->sectionName,
+                                'webURL' => $article->webUrl,
+                                'publicationDate' => $article->webPublicationDate
+                            ]
+                        );
+
+                        $newArticle->save();
+                    } catch (\Exception $e) {
+                        Log::error($e->getMessage());
+                    }
+                }
             }
-
-            // $response = json_decode($response, true);
         } catch (RequestException $e) {
             Log::error($e->getMessage());
         }
