@@ -37,8 +37,8 @@
             <tr>
               <td><a href="{{ $item['article_url'] }}">{{ $item['title'] }}</td>
               <td>{{ $item['published_date'] }}</td>
-              <input type="hidden" id="title" name="title" value="{{ $item['content_ref_id'] }}">
-              <input type="hidden" id="published_date" name="published_date" value="{{ $item['content_ref_id'] }}">
+              <input type="hidden" id="title" name="title" value="{{ $item['title'] }}">
+              <input type="hidden" id="published_date" name="published_date" value="{{ $item['published_date'] }}">
               <input type="hidden" id="content_ref_id" name="content_ref_id" value="{{ $item['content_ref_id'] }}">
               <input type="hidden" id="article_url" name="article_url" value="{{ $item['article_url'] }}">
               <td><input type="submit" id="pin" value="Pin"></td>

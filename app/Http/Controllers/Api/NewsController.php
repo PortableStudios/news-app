@@ -96,16 +96,17 @@ class NewsController extends Controller
      */
     public function storePinnedArticles(Request $request)
     {
-        $publishedDate = ($request->input('published_date')) ? Carbon::parse($request->input('published_date'))->format('d-m-Y') : null;
+        $publishedDate = ($request->input('published_date')) ? Carbon::createFromFormat('d/m/Y', $request->input('published_date'))->format('d-m-Y') : null;
         
         $data = [
             'content_ref_id' => $request->input('content_ref_id'),
             'title'          => $request->input('title'),
             'article_url'    => $request->input('article_url'),
             'published_date' => $publishedDate,
+            'is_pinned'      => true,
         ];
 
-        //TODO: add error handling
+        //TODO: add error handling - validation
         $this->newsModel::create($data)->refresh();
     }
 }
