@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        //Enhancement - User table and its foreign key to be added
         Schema::create('news_search_results', function (Blueprint $table) {
             $table->id();
             $table->string('content_ref_id')->unique();

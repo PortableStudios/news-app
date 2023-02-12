@@ -11,9 +11,19 @@ use Carbon\Carbon;
 class NewsController extends Controller
 {
     /**
-     * Illuminate\Http\Request $request
+     * @param App\Models\NewsSearchResults $newsModel
      * 
-     * return view
+     * @return void
+     */
+    public function __construct(NewsSearchResults $newsModel)
+    {
+        $this->newsModel   = $newsModel;
+    }
+
+    /**
+     * @param Illuminate\Http\Request $request
+     * 
+     * @return void
      */
     public function search(Request $request)
     {       
@@ -64,13 +74,11 @@ class NewsController extends Controller
     }
 
      /**
-     * return view
+     * @return void
      */
     public function getPinnedArticles()
     {       
-        $newsSearchResults = new NewsSearchResults;
-
-        $result = $newsSearchResults::where('is_pinned', true)
+        $result = $this->newsModel::where('is_pinned', true)
                     ->get()
                     ->toArray();
 
@@ -78,16 +86,16 @@ class NewsController extends Controller
     }
 
     /**
-     * Handles one request at a time
-     * Illuminate\Http\Request $request
-     * TODO: Update with bulk pinned articles
+     * Handles one request at a time | *TODO: Update with bulk pinned articles
      * 
-     * return view
+     * @param Illuminate\Http\Request $request
+     * 
+     * //Currently working on it
+     * 
+     * @return void
      */
     public function storePinnedArticles(Request $request)
     {
-        $newsSearchResults = new NewsSearchResults;
-
         $publishedDate = ($request->input('published_date')) ? Carbon::parse($request->input('published_date'))->format('d-m-Y') : null;
         
         $data = [
@@ -98,6 +106,6 @@ class NewsController extends Controller
         ];
 
         //TODO: add error handling
-        $newsSearchResults::create($data)->refresh();
+        $this->newsModel::create($data)->refresh();
     }
 }
