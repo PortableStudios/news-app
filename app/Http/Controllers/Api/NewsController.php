@@ -34,17 +34,13 @@ class NewsController extends Controller
 
             foreach($results as $item) {
                 
-                //Date format - 2022-10-26T15:57:39Z to be updated with d/m/Y
-                $dateFormat = date('d/m/Y', strtotime($item->webPublicationDate)); 
-                
-                //TODO: Use Carbon
-                //$dateFormat = Carbon::createFromFormat("Y-m-dTH:i:sZ", $item->webPublicationDate)->format('d/m/Y');
+                $dateFormat = Carbon::parse($item->webPublicationDate)->format('d/m/Y');
 
                 $list[] = [
                     'content_ref_id' => $item->id,
                     'title'          => $item->webTitle,
                     'article_url'    => $item->webUrl,
-                    'published_date' => $dateFormat//$item->webPublicationDate, //TODO: Convert dateformat
+                    'published_date' => $dateFormat
                 ];
 
                 //Enhancement: To Use with Model and return collection
@@ -92,7 +88,6 @@ class NewsController extends Controller
     {
         $newsSearchResults = new NewsSearchResults;
 
-
         $publishedDate = ($request->input('published_date')) ? Carbon::parse($request->input('published_date'))->format('d-m-Y') : null;
         
         $data = [
@@ -104,7 +99,5 @@ class NewsController extends Controller
 
         //TODO: add error handling
         $newsSearchResults::create($data)->refresh();
-
-
     }
 }
