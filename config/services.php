@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'guardian' => [
+        'apiurl' => env('GUARDIAN_API_URL'),
+        'key'    => env('GUARDIAN_API_KEY'),
+    ],
+
 ];

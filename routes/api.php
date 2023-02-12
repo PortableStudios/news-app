@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\NewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/newsapp', [NewsController::class, 'search'])->name('news.search');
+
+Route::apiResource('news', NewsController::class);
+
+Route::post('api/newsapp', [NewsController::class, 'storePinnedArticles'])->name('news.pinned');
+
