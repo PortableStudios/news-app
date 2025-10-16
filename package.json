@@ -1,0 +1,22 @@
+{
+  "name": "news-app",
+  "version": "0.1.0",
+  "description": "Portable work sample application",
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --names client,server -c red,blue \"npm run dev --workspace packages/client\" \"npm run dev --workspace packages/server\"",
+    "lint": "npm run lint --workspaces"
+  },
+  "author": "Chris D'Aloisio <chris.daloisio@portable.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

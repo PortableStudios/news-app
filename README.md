@@ -71,3 +71,12 @@ if you have a solid reason for them.
   touches are *entirely* optional. Some developers prefer to leave the
   design to designers, some get a kick out of making things *just so*.
   We like both kinds.
+
+
+## Starting up this branch
+
+```
+nvm use
+npm install
+npm run dev
+```
