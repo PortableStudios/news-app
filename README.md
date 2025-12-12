@@ -42,13 +42,13 @@ grouped by the Section of the Guardian the items are found in.
   to implement the required functionality.
 - The app may call the Guardian API directly, but give thought to how you
   structure your code so that other APIs may be able to be used in future.
-- Each item should show:
-  - The title
-  - A link to the article
-  - The publication date (formatted as DD/MM/YYYY).
-  - A button or checkbox that allows it to be pinned.
-    - Pinned items should appear below the search results, and stay
-      on screen as search results change.
+- For each article in the search results:
+  - Show the title and publication date (formatted as DD/MM/YYYY).
+  - Include functionality to see more information about the article,
+    such as:
+    - previewing the article
+    - opening the article in a web browser app
+    - sharing the article with someone
 
 You may add any libraries and frameworks that will help you get the job
 done. Use any UI framework or prebuilt design system that works for you.
@@ -69,10 +69,20 @@ nvm install
 npm install
 
 # Run the development server
-npx expo start
+npm run start
 ```
 
 See [README-expo.md](README-expo.md) for more information.
+
+You can run storybook either in a browser or on a device or simulator:
+
+```
+# Run storybook in browser
+npm run storybook:browser
+
+# Run storybook native development server
+npm run storybook:native
+```
 
 ## What we’re looking for
 
